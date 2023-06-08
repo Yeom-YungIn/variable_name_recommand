@@ -1,0 +1,5 @@
+.npmignore
+test/
+*.json
+node_modules/
+.idea/
