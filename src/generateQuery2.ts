@@ -15,7 +15,7 @@ const rex_empt2 = /__empty_[0-9]/
  * @param {Object} data data xlsx to Json parsing Data
  * @returns Create Table DDL
  */
-async function createTableQ(tableName: string, data: Object){
+async function createTableQ(tableName: string, data:  { [key: string]: any }){
     if (reg.test(tableName) === true) {
         console.log('테이블명 특수문자 포함')
         return 0
@@ -57,8 +57,8 @@ async function createPKQ (tableName: string) {
  * @returns Insert Query
  */
 async function createInsertQ (tableName: string, dataBaseDate: string, data: Object) {
-    var arr: string[] = [];
-
+    let arr: string[] = new Array;
+    console.log('```````````' + arr)
     if (reg.test(tableName) === true) {
         console.log('테이블명 특수문자 포함')
         return 0
@@ -83,8 +83,6 @@ async function createInsertQ (tableName: string, dataBaseDate: string, data: Obj
     }
     query += 'data_base_date'
     query += ')'
-    console.log(query)
-    console.log(arr)
     // append values
     let i = 0
     query += (' values ')
@@ -93,33 +91,30 @@ async function createInsertQ (tableName: string, dataBaseDate: string, data: Obj
         i += 1
         let j = 0
         for (const keys in data[item]) {
-            // console.log(data[item])
-            // if (arr.includes(j.toString())) {
-            //     console.log(keys + ' ' + arr.includes(j.toString()))
-            // } else {
-            //     if (data[item][keys] === null) {
-            //         query += (`'',`)
-            //     } else if (reg_space.test(data[item][keys])) {
-            //         query += (`'`)
-            //         query += (data[item][keys].replace(/'/gi, ''))
-            //         query += (`',`)
-            //     } else {
-            //         query += (`'`)
-            //         query += (data[item][keys])
-            //         query += (`',`)
-            //     }
-            // }
-            // j += 1
+            if (arr.includes(j.toString())) {
+                console.log(keys + ' ' + arr.includes(j.toString()))
+            } else {
+                if (data[item][keys] === null) {
+                    query += (`'',`)
+                } else if (reg_space.test(data[item][keys])) {
+                    query += (`'`)
+                    query += (data[item][keys].replace(/'/gi, ''))
+                    query += (`',`)
+                } else {
+                    query += (`'`)
+                    query += (data[item][keys])
+                    query += (`',`)
+                }
+            }
+            j += 1
         }
         query += `'` + dataBaseDate + `'`
-        console.log(item)
         if (parseInt(item) < Object.keys(data).length - 1) {
             query += ('),')
         } else {
             query += (')')
         }
     }
-    // console.log(query)
     return query
 }
 
