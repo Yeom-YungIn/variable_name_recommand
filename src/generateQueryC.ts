@@ -7,12 +7,16 @@ const rex_empt = /__empty/
 const rex_empt2 = /__empty_[0-9]/
 
 
-export class GenerateQueryC implements GenerateQueryI {
+export class GenerateQueryC implements GenerateQueryI{
 
     constructor() {
     }
 
-
+    /**
+     * @param {string} tableName tableName
+     * @param {Object} data data xlsx to Json parsing Data
+     * @returns Create Table DDL
+     */
     async createTableQ(tableName: string, data:  { [key: string]: any }) {
         if (reg.test(tableName) === true) {
             console.log('테이블명 특수문자 포함')
@@ -39,11 +43,21 @@ export class GenerateQueryC implements GenerateQueryI {
         return query
     }
 
+    /**
+     * @param {string} tableName tableName
+     * @returns Alter table PK QUERY
+     */
     createPkQ(tableName: string ) {
         const query = `ALTER TABLE public.${tableName} ADD CONSTRAINT ${tableName}_pk PRIMARY KEY (colct_no, data_base_date)`;
         return query;
     }
 
+    /**
+     * @param {string} tableName tableName
+     * @param {string} dataBaseDate Data Base Date
+     * @param {Object} data xlsx to Json parsing Data
+     * @returns INSERT QUERY
+     */
     async createInsertQ(tableName: string, dataBaseDate: string, data: Object) {
         let arr: string[] = new Array;
         console.log('```````````' + arr)

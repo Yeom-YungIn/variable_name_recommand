@@ -5,6 +5,6 @@
     "outDir": "dist",
 //    "noImplicitAny": true, // any라는 타입이 의도치않게 발생할 경우 에러
 //    "strictNullChecks": true, // null, undefined 타입에 이상한 조작하면 에러
-    "declaration": true
+//    "declaration": true
   }
 }

@@ -7,10 +7,7 @@ export interface GenerateQueryI {
      * @returns Insert Query
      */
     createTableQ(tableName: string, data:  { [key: string]: any })
-    /**
-     * @param {string} tableName tableName
-     * @returns Alter table PK Query
-     */
+
     createPkQ(tableName: string)
     createInsertQ (tableName: string, dataBaseDate: string, data: Object)
 }

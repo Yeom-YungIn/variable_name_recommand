@@ -1,25 +1,13 @@
-import { createTableQ, createPKQ, createInsertQ } from "../src/generateQuery2";
+const xlsx = require('xlsx')
+const file = "C:\\300.DEV\\DEV\\npm\\test\\xlsx_to_query_testFIle.xlsx"
 import { GenerateQueryC } from "../src/generateQueryC";
 
-test("create Table Query Test", async () => {
-    const data = JSON.parse('[{"test":"a", "ttttest":""}]')
-    const createTableQuery = await createTableQ("tableName", data)
-    console.log(createTableQuery)
-})
-
-test("create PK Query Test", async () => {
-    const createPkQ = await createPKQ("tableName")
-    console.log(createPkQ)
-})
 
 test("create Insert Query Test", async () => {
-    const data = JSON.parse('[{"test":"a", "ttttest":"tete"}]')
-    const dataBaseDate = "20230612"
-    const createInsertQuery = await createInsertQ("tableName", dataBaseDate, data)
-    console.log(createInsertQuery)
-})
-
-test("create Insert Query Test", async () => {
+    const workbook = xlsx.readFile(file, Uint8Array)
+    const sheetName = workbook.SheetNames[0]
+    const sheet2Json = xlsx.utils.sheet_to_json(workbook.Sheets[sheetName], {defval: null, range: 0})
     const generateQ = new GenerateQueryC()
-    await generateQ.createTableQ('testtable', [])
+    const createTBQ = await generateQ.createTableQ('testTable', sheet2Json)
+    console.log(createTBQ)
 })

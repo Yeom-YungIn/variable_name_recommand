@@ -1,12 +1,19 @@
 {
-  "name": "cel2db",
-  "version": "0.0.1",
+  "name": "xlsx_query_generate",
+  "version": "0.0.4",
   "description": "",
-  "main": "index.ts",
+  "main": "dist/index.js",
   "scripts": {
     "test": "npm test"
   },
-  "keywords": [],
+  "keywords": [
+    "xlsx",
+    "sequelize",
+    "postresql",
+    "Query",
+    "Create Query"
+
+  ],
   "author": "0in",
   "license": "ISC",
   "devDependencies": {
