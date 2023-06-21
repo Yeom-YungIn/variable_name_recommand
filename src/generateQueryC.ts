@@ -60,7 +60,6 @@ export class GenerateQueryC implements GenerateQueryI{
      */
     async createInsertQ(tableName: string, dataBaseDate: string, data: Object) {
         let arr: string[] = new Array;
-        console.log('```````````' + arr)
         if (reg.test(tableName) === true) {
             console.log('테이블명 특수문자 포함')
             return 0
@@ -71,7 +70,7 @@ export class GenerateQueryC implements GenerateQueryI{
         query += 'colct_no,'
         // append keys
         for (const key in Object.keys(data[0])) {
-            const col = Object.keys(data[0])[key]
+            const col: string = Object.keys(data[0])[key]
             if (reg.test(col) === true) {
                 console.log('컬럼 특수문자 포함')
                 return 0
