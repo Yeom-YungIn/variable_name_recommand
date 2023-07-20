@@ -1,7 +1,7 @@
 {
   "name": "xlsx_query_generate",
-  "version": "0.0.4",
-  "description": "",
+  "version": "0.0.5",
+  "description": "xlsx_query_generate” provide varioust query for “xlsx” and “sequelize/postgresql",
   "main": "dist/index.js",
   "scripts": {
     "test": "npm test"
@@ -12,7 +12,6 @@
     "postresql",
     "Query",
     "Create Query"
-
   ],
   "author": "0in",
   "license": "ISC",

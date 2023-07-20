@@ -1,4 +1,5 @@
-import { GenerateQueryI } from "./generateQueryI";
+import {GenerateQueryI} from "./generateQueryI";
+const util = require('node:util');
 
 //임시_TBD
 const reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"]/g
@@ -17,10 +18,10 @@ export class GenerateQueryC implements GenerateQueryI{
      * @param {Object} data data xlsx to Json parsing Data
      * @returns Create Table DDL
      */
-    async createTableQ(tableName: string, data:  { [key: string]: any }) {
+    async createTableQ(tableName: string, data:  { [key: string]: any }): Promise<string> {
         if (reg.test(tableName) === true) {
             console.log('테이블명 특수문자 포함')
-            return 0
+            return "테이블명 특수문자 포함"
         }
 
         let query = 'CREATE TABLE '
@@ -32,7 +33,7 @@ export class GenerateQueryC implements GenerateQueryI{
             const col = Object.keys(data[0])[key]
             if (reg.test(col) === true) {
                 console.log('컬럼 특수문자 포함')
-                return 0
+                return "컬럼 특수문자 포함"
             } else if (rex_empt.test(col) || rex_empt2.test(col)) {
                 console.log(col)
             } else {
@@ -47,9 +48,8 @@ export class GenerateQueryC implements GenerateQueryI{
      * @param {string} tableName tableName
      * @returns Alter table PK QUERY
      */
-    createPkQ(tableName: string ) {
-        const query = `ALTER TABLE public.${tableName} ADD CONSTRAINT ${tableName}_pk PRIMARY KEY (colct_no, data_base_date)`;
-        return query;
+    createPkQ(tableName: string ): string {
+        return `ALTER TABLE public.${tableName} ADD CONSTRAINT ${tableName}_pk PRIMARY KEY (colct_no, data_base_date)`;
     }
 
     /**
@@ -58,11 +58,11 @@ export class GenerateQueryC implements GenerateQueryI{
      * @param {Object} data xlsx to Json parsing Data
      * @returns INSERT QUERY
      */
-    async createInsertQ(tableName: string, dataBaseDate: string, data: Object) {
-        let arr: string[] = new Array;
+    async createInsertQ(tableName: string, dataBaseDate: string, data: any): Promise<string> {
+        let arr: string[] = [];
         if (reg.test(tableName) === true) {
             console.log('테이블명 특수문자 포함')
-            return 0
+            return "테이블명 특수문자 포함"
         }
         let query: string = `insert into public.`
         query += tableName
@@ -73,7 +73,7 @@ export class GenerateQueryC implements GenerateQueryI{
             const col: string = Object.keys(data[0])[key]
             if (reg.test(col) === true) {
                 console.log('컬럼 특수문자 포함')
-                return 0
+                return "컬럼 특수문자 포함"
             } else if (rex_empt.test(col) || rex_empt2.test(col)) {
                 arr.push(key)
                 console.log(col)
@@ -85,12 +85,12 @@ export class GenerateQueryC implements GenerateQueryI{
         query += 'data_base_date'
         query += ')'
         // append values
-        let i = 0
+        let i: number = 0
         query += (' values ')
         for (const item in data) {
             query += (`(${i},`)
             i += 1
-            let j = 0
+            let j: number = 0
             for (const keys in data[item]) {
                 if (arr.includes(j.toString())) {
                     console.log(keys + ' ' + arr.includes(j.toString()))
