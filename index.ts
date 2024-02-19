@@ -1,1 +1,1 @@
-module.exports = require("./src/generateQueryC")
+module.exports = require("./src/generator")
