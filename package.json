@@ -1,7 +1,7 @@
 {
   "name": "xlsx_query_generate",
-  "version": "0.0.5",
-  "description": "xlsx_query_generate” provide varioust query for “xlsx” and “sequelize/postgresql",
+  "version": "1.0.0",
+  "description": "xlsx_query_generate is a library for creating tables and storing data using the values returned by xlsx's sheet_to_json method.",
   "main": "dist/index.js",
   "scripts": {
     "test": "npm test"

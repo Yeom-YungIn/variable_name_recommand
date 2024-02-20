@@ -3,7 +3,7 @@
 ## introduction
 
 xlsx_query_generate is a library for creating tables and storing data using the values returned by xlsx's sheet_to_json method.
-As long as the data format is correct (like object[] in TypeScript), you can change Json data into a query.
+This creates a postgresql query. As long as the data format is correct (like object[] in TypeScript), you can change Json data into a query.
 
 ---
 # **USAGE**

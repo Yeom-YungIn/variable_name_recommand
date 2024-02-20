@@ -7,6 +7,7 @@
 //    "strictNullChecks": true, // null, undefined 타입에 이상한 조작하면 에러
 //    "noEmitOnError": false,
     "esModuleInterop": true,
-    "declaration": true
+    "declaration": true,
+    "include": [ "src/**/*.ts" ],
   }
 }
