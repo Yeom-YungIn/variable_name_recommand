@@ -9,7 +9,7 @@ This creates a postgresql query. As long as the data format is correct (like obj
 # **USAGE**
 
 ```jsx
-import Generator from "../src/generator";
+import Generator from "xlsx_query_generate/dist/generator";
 const generator = new Generator()
 
 //This is the table name to be created.

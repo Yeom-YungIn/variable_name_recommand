@@ -1,13 +1,18 @@
 {
   "compilerOptions": {
-    "target": "es2022",
-    "module": "esnext",
+    "target": "ESNext",
+    "module": "commonjs",
+    "moduleResolution": "nodenext",
     "outDir": "dist",
-    "noImplicitAny": true, // any라는 타입이 의도치않게 발생할 경우 에러
-//    "strictNullChecks": true, // null, undefined 타입에 이상한 조작하면 에러
-//    "noEmitOnError": false,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noEmitOnError": false,
     "esModuleInterop": true,
     "declaration": true,
-    "include": [ "src/**/*.ts" ],
-  }
+//    "resolveJsonModule": true,
+    "sourceMap": true,
+    "declarationMap": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": [ "**/*.test.ts", "**/*.data.*" ]
 }
