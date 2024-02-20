@@ -1,6 +1,6 @@
 {
   "name": "xlsx_query_generate",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "xlsx_query_generate is a library for creating tables and storing data using the values returned by xlsx's sheet_to_json method.",
   "main": "dist/index.js",
   "scripts": {
